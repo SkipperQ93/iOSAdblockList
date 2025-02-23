@@ -1,3 +1,23 @@
+# Ad Blocking Hosts File
+0.0.0.0 localhost
+255.255.255.255 broadcasthost
+::1 localhost
+fe80::1%lo0 localhost
+
+0.0.0.0 ocsp.apple.com
+::1 ocsp.apple.com
+
+###Facebook
+#0.0.0.0 graph.facebook.com
+#::1 graph.facebook.com
+#0.0.0.0 external.xx.fbcdn.net
+#0.0.0.0 scontent.xx.fbcdn.net
+#::1 external.xx.fbcdn.net
+#::1 scontent.xx.fbcdn.net
+
+# Google Amp
+#cdn.ampproject.org
+
 0.0.0.0 050y9lhe8p.com
 0.0.0.0 0914.global.ssl.fastly.net
 0.0.0.0 0c3-a.tlnk.io
