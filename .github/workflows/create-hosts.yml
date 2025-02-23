@@ -15,8 +15,30 @@ jobs:
 
       - name: Generate hosts file
         run: |
-          # Add 0.0.0.0 prefix to each entry and create new file
-          awk '{print "0.0.0.0 " $0}' "Regular Hosts.txt" > hosts
+          # Create header with custom content
+          echo "# Ad Blocking Hosts File" > hosts
+          echo "0.0.0.0 localhost" >> hosts
+          echo "255.255.255.255 broadcasthost" >> hosts
+          echo "::1 localhost" >> hosts
+          echo "fe80::1%lo0 localhost" >> hosts
+          echo "" >> hosts
+          echo "0.0.0.0 ocsp.apple.com" >> hosts
+          echo "::1 ocsp.apple.com" >> hosts
+          echo "" >> hosts
+          echo "###Facebook" >> hosts
+          echo "#0.0.0.0 graph.facebook.com" >> hosts
+          echo "#::1 graph.facebook.com" >> hosts
+          echo "#0.0.0.0 external.xx.fbcdn.net" >> hosts
+          echo "#0.0.0.0 scontent.xx.fbcdn.net" >> hosts
+          echo "#::1 external.xx.fbcdn.net" >> hosts
+          echo "#::1 scontent.xx.fbcdn.net" >> hosts
+          echo "" >> hosts
+          echo "# Google Amp" >> hosts
+          echo "#cdn.ampproject.org" >> hosts
+          echo "" >> hosts
+
+          # Append processed entries from source file
+          awk '{print "0.0.0.0 " $0}' "Regular Hosts.txt" >> hosts
 
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
