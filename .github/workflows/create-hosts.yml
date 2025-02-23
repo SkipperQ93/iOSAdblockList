@@ -2,8 +2,8 @@ name: Generate Adblock Hosts
 
 on:
   push:
-    paths:
-      - 'Regular Hosts.txt'
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
