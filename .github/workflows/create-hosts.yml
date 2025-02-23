@@ -1,0 +1,27 @@
+name: Generate Adblock Hosts
+
+on:
+  push:
+    paths:
+      - 'Regular Hosts.txt'
+  workflow_dispatch:
+
+jobs:
+  convert-hosts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate hosts file
+        run: |
+          # Add 0.0.0.0 prefix to each entry and create new file
+          awk '{print "0.0.0.0 " $0}' "Regular Hosts.txt" > hosts
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: GitHub Actions
+          author_email: actions@github.com
+          message: 'Update adblock hosts file'
+          add: hosts
